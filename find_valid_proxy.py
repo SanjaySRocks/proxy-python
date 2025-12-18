@@ -6,7 +6,7 @@ q = queue.Queue()
 
 valid_proxies = []
 
-with open("iplist.txt", "r") as f:
+with open("iplists.txt", "r") as f:
     proxies = f.read().split("\n")
     for p in proxies:
         q.put(p)
@@ -26,7 +26,7 @@ def check_proxies():
                 print(f"Valid proxy: {proxy}")
                 valid_proxies.append(proxy)  # Save valid proxies
         except requests.RequestException as e:
-            print(f"Failed proxy {proxy}: {e}")
+            print(f"Failed proxy {proxy}")
         finally:
             q.task_done()  # Signal task completion
 
